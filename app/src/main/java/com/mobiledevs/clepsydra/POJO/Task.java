@@ -9,21 +9,22 @@ import java.util.Date;
 
 public class Task {
 
-    public String taskName;
-    public String taskCreationDate;
-    public Date taskDueDate;
-    public String taskCategory;
-    public String taskPriority;
-    public Date taskReminderDate;
-    public String taskLocation;
-    public boolean taskComplete;
-    public boolean onTime;
+    private String taskName;
+    private String taskCreationDate;
+    private Date taskDueDate;
+    private String taskCategory;
+    private String taskPriority;
+    private Date taskReminderDate;
+    private String taskLocation;
+    private boolean taskComplete;
+    private boolean onTime;
 
     public Task(String newTaskName){
 
         taskName = newTaskName;
         taskComplete = false;
         taskCreationDate = DateFormat.getDateTimeInstance().format(new Date());
+
     }
 
 
