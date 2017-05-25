@@ -10,27 +10,113 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mobiledevs.clepsydra.Activities.NewTaskActivity">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        <Button
-            android:text="Save"
+        <TextView
+            android:id="@+id/txtNewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSaveNewTask"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textStyle="normal|bold"
-            android:textAlignment="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="New Task"
             android:textSize="18sp"
-            android:fontFamily="sans-serif-medium"
-            android:visibility="visible"
-            android:onClick="goHome"
-            android:layout_marginLeft="500px"
-            android:layout_marginTop="1000px"
-            />
-    </FrameLayout>
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editTxtNewTask"
+            android:layout_width="322dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_below="@+id/txtNewTask"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dropTaskType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:text="Task Category"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_alignRight="@+id/dropTaskPriority"
+        android:layout_alignEnd="@+id/dropTaskPriority" />
+
+    <Spinner
+        android:id="@+id/editDropTaskType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropTaskType"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:entries="@array/category_arrays"/>
+
+    <TextView
+        android:id="@+id/dateTaskDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/editDropTaskType"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Due Date"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_alignRight="@+id/dropTaskPriority"
+        android:layout_alignEnd="@+id/dropTaskPriority" />
+
+    <TextView
+        android:id="@+id/dropTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_below="@+id/dateTaskDueDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Priority Level"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <Spinner
+        android:id="@+id/editDropTaskPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropTaskPriority"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:entries="@array/priority_arrays"/>
+
+    <Button
+        android:id="@+id/btnAddNewTask"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Add New Task" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Cancel" />
+
+
 </RelativeLayout>

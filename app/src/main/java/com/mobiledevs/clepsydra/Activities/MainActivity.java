@@ -2,11 +2,15 @@ package com.mobiledevs.clepsydra.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.mobiledevs.clepsydra.POJO.Task;
 import com.mobiledevs.clepsydra.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,15 +22,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Task newTask = new Task("testing");
-//                Snackbar.make(view, newTask.getTaskName() + " / " + newTask.isTaskComplete()+" / " + newTask.getTaskCreationDate() , Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        createNewActivity();
+        String newTaskName = getIntent().getStringExtra("newTaskName");
+        Task newTask = new Task(newTaskName);
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(newTask.getTaskName());
     }
 
     @Override
@@ -51,10 +51,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSettings(MenuItem item) {
-        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        finish();
+        startActivity(intent);
     }
 
-    public void addNewTask(MenuItem item) {
-        startActivity(new Intent(MainActivity.this, NewTaskActivity.class));
+
+    public void createNewActivity(){
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewTaskActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
+
 }
