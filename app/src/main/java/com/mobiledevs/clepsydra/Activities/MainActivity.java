@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         createNewActivity();
         String newTaskName = getIntent().getStringExtra("newTaskName");
+        String newTaskPriority = getIntent().getStringExtra("newTaskPriority");
         Task newTask = new Task(newTaskName);
+        newTask.setTaskPriority(newTaskPriority);
         TextView textView = (TextView) findViewById(R.id.textView2);
-        textView.setText(newTask.getTaskName());
+        textView.setText(newTask.getTaskPriority());
     }
 
     @Override
