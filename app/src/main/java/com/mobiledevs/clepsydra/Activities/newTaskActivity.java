@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mobiledevs.clepsydra.R;
 
@@ -23,16 +25,16 @@ public class NewTaskActivity extends AppCompatActivity {
     public void btnCreateListener(){
         Button btnCreate = (Button) findViewById(R.id.btnAddNewTask);
         Button btnCancel = (Button) findViewById(R.id.btnCancel);
-        final String newTaskName = Integer.toString(R.id.editTxtNewTask);
-        //String newTaskPriority = Integer.toString(R.id.editDropTaskPriority);
 
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewTaskActivity.this, MainActivity.class);
+                String newTaskName = getTaskName();
+                String newTaskPriority = getTaskPriority();
                 intent.putExtra("newTaskName",newTaskName);
-                intent.putExtra("newTaskPriority",Integer.toString(R.id.editDropTaskPriority));
+                intent.putExtra("newTaskPriority",newTaskPriority);
                 finish();
                 startActivity(intent);
             }
@@ -46,5 +48,20 @@ public class NewTaskActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    public String getTaskName(){
+        TextView taskName = (TextView) findViewById(R.id.editTxtNewTask);
+        final String newTaskName = taskName.getText().toString();
+
+        return newTaskName;
+    }
+
+    public String getTaskPriority(){
+        Spinner taskPriority = (Spinner) findViewById(R.id.editDropTaskPriority);
+        final String newTaskPriority = taskPriority.getSelectedItem().toString();
+
+        return newTaskPriority;
     }
 }
