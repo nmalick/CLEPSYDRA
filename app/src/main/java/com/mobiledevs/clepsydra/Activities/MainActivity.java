@@ -8,9 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
-import com.mobiledevs.clepsydra.POJO.Task;
 import com.mobiledevs.clepsydra.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,18 +22,19 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         createNewActivity();
-        String newTaskName = getIntent().getStringExtra("newTaskName");
-        String newTaskPriority = getIntent().getStringExtra("newTaskPriority");
+        displayTasks();
+//        String newTaskName = getIntent().getStringExtra("newTaskName");
+//        String newTaskPriority = getIntent().getStringExtra("newTaskPriority");
 
-        Task newTask = new Task(newTaskName);
-        newTask.setTaskPriority(newTaskPriority);
+//        Task newTask = new Task(newTaskName);
+//        newTask.setTaskPriority(newTaskPriority);
 
 
 
-        TextView textView = (TextView) findViewById(R.id.textView2);
-        TextView textView2 = (TextView) findViewById(R.id.textView3);
-        textView.setText(newTask.getTaskName());
-        textView2.setText(newTask.getTaskPriority());
+//        TextView textView = (TextView) findViewById(R.id.textView2);
+//        TextView textView2 = (TextView) findViewById(R.id.textView3);
+//        textView.setText(newTask.getTaskName());
+//        textView2.setText(newTask.getTaskPriority());
     }
 
     @Override
@@ -73,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, NewTaskActivity.class);
                 finish();
                 startActivity(intent);
+            }
+        });
+    }
+
+    public void displayTasks(){
+        Button btnDisplay = (Button) findViewById(R.id.btnDisplay);
+        btnDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
