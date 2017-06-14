@@ -1,5 +1,7 @@
 package com.mobiledevs.clepsydra.POJO;
 
+import android.content.Context;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,8 @@ import java.util.Date;
  */
 
 public class Task {
+
+    private Context context;
 
     private String taskName;
     private Date taskCreationDate;
@@ -18,7 +22,8 @@ public class Task {
     private boolean taskComplete;
     private boolean onTime;
 
-    public Task(String newTaskName){
+    public Task(String newTaskName, Context context){
+        this.context = context;
 
         taskName = newTaskName;
         taskComplete = false;
@@ -97,6 +102,10 @@ public class Task {
 
     public void setOnTime(boolean onTime) {
         this.onTime = onTime;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
 }

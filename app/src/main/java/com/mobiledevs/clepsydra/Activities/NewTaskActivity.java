@@ -1,5 +1,6 @@
 package com.mobiledevs.clepsydra.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.mobiledevs.clepsydra.POJO.Task;
 import com.mobiledevs.clepsydra.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,8 +38,8 @@ public class NewTaskActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Task task = getNewTask();
-//                saveNewTask(getNewTask());
+                Task newTask = getNewTask();
+                saveNewTask(newTask);
                 Intent intent = new Intent(NewTaskActivity.this, MainActivity.class);
                 finish();
                 startActivity(intent);
@@ -82,7 +85,7 @@ public class NewTaskActivity extends AppCompatActivity {
         TextView taskReminderDate = (TextView) findViewById(R.id.editDateTaskReminderDate);
         TextView taskLocation = (TextView) findViewById(R.id.editTxtTaskLocation);
 
-        Task newTask = new Task(taskName.getText().toString());
+        Task newTask = new Task(taskName.getText().toString(),this);
         newTask.setTaskCategory(taskCategory.getSelectedItem().toString());
         newTask.setTaskPriority(taskPriority.getSelectedItem().toString());
         newTask.setTaskLocation(taskLocation.getText().toString());
@@ -104,7 +107,26 @@ public class NewTaskActivity extends AppCompatActivity {
         return newTask;
     }
 
-//    public void saveNewTask(Task newTask){
+    public void saveNewTask(Task newTask){
+        String taskName = newTask.getTaskName();
+        String fileName = taskName + ".txt";
+        String newTaskString = newTask.getTaskName() + "|" +
+                newTask.getTaskCategory()+ "|" +newTask.getTaskLocation()+ "|" +
+                newTask.getTaskPriority()+ "|" +newTask.getTaskCreationDate()+ "|" +
+                newTask.getTaskDueDate()+ "|" +newTask.getTaskReminderDate()+ ";" ;
+
+                File newTaskFile = new File(newTask.getContext().getFilesDir(),taskName);
+
+        FileOutputStream oStream;
+        try {
+            oStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+            oStream.write(newTaskString.getBytes());
+            oStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//.....................SQL version of file storage........................
 //        SQLAdapter sqlAdapter = new SQLAdapter(this);
 //        sqlAdapter.openToWrite();
 //        sqlAdapter.insert(newTask);
@@ -116,7 +138,9 @@ public class NewTaskActivity extends AppCompatActivity {
 //        textView.setText(sqlAdapter.getName());
 //
 //        sqlAdapter.close();
-//    }
+
+//        ...........................................................................................................
+    }
 
     public void getDefaultDueDate(){
         TextView taskDueDate = (TextView) findViewById(R.id.editDateTaskDueDate);

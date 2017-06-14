@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.mobiledevs.clepsydra.R;
 
@@ -20,10 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        createNewActivity();
-
-//        SQLAdapter sqlAdapter = new SQLAdapter(this);
-//        displayTasks(sqlAdapter);
+        createNewTask();
+        displayTasks();
 
 
 //.............................................................
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void createNewActivity(){
+    public void createNewTask(){
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,17 +82,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void displayTasks(final SQLAdapter sqlAdapter){
-//        Button btnDisplay = (Button) findViewById(R.id.btnDisplay);
-//        btnDisplay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                sqlAdapter.openToRead();
-//                TextView textView = (TextView) findViewById(R.id.txtDisplay);
-//                textView.setText(sqlAdapter.queueAll().getCount());
-//            }
-//        });
-//    }
+    public void displayTasks(){
+        Button btnDisplay = (Button) findViewById(R.id.btnDisplay);
+        btnDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = "N/A";
+
+                String[] tasks = getFilesDir().list();
+                for (String task : tasks){
+                    data = task + "\n";
+                }
+//                FileInputStream iStream;
+//                InputStreamReader iSReader;
+//                try {
+//                    iStream = openFileInput("221.txt");
+//                    iSReader = new InputStreamReader(iStream);
+//                    char[] inputBuffer = new char[iStream.available()];
+//                    iSReader.read(inputBuffer);
+//                    data = new String(inputBuffer);
+//
+//                    iSReader.close();
+//                    iStream.close();
+//
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
+
+                TextView textView = (TextView) findViewById(R.id.txtDisplay);
+                textView.setText(data);
+            }
+        });
+    }
 
 
 
