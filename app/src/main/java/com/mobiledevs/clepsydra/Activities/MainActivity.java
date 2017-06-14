@@ -87,11 +87,14 @@ public class MainActivity extends AppCompatActivity {
         btnDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String data = "N/A";
+                String data =null;
 
                 String[] tasks = getFilesDir().list();
                 for (String task : tasks){
-                    data = task + "\n";
+                    if(data!= null)
+                        data += task + "\n";
+                    else
+                        data = "";
                 }
 //                FileInputStream iStream;
 //                InputStreamReader iSReader;
