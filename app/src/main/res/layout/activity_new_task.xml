@@ -13,6 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -20,10 +21,9 @@
             android:id="@+id/txtNewTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="New Task"
+            android:layout_centerHorizontal="true"
+            android:text="Add new task"
             android:textSize="18sp"
             android:textStyle="italic" />
 
@@ -38,27 +38,26 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+
+
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/dropTaskType"
+        android:id="@+id/dropTaskCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:text="Task Category"
+        android:layout_marginTop="82dp"
+        android:text="Selet a Category"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:layout_alignRight="@+id/dropTaskPriority"
-        android:layout_alignEnd="@+id/dropTaskPriority" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
-        android:id="@+id/editDropTaskType"
+        android:id="@+id/editDropTaskCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dropTaskType"
+        android:layout_below="@+id/dropTaskCategory"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -69,27 +68,41 @@
         android:id="@+id/dateTaskDueDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:layout_below="@+id/editDropTaskType"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Task Due Date"
+        android:text="Set Due Date"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:layout_alignRight="@+id/dropTaskPriority"
-        android:layout_alignEnd="@+id/dropTaskPriority" />
+        android:layout_below="@+id/editDropTaskPriority"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp" />
+
+    <TextView
+        android:id="@+id/editDateTaskDueDate"
+        android:layout_width="322dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dateTaskDueDate"
+        android:clickable="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/dropTaskPriority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:layout_below="@+id/dateTaskDueDate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Task Priority Level"
+        android:layout_marginTop="21dp"
+        android:text="Set Priority Level"
         android:textSize="18sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:layout_below="@+id/editDropTaskCategory"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
         android:id="@+id/editDropTaskPriority"
@@ -117,6 +130,65 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/dateTaskReminderDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Set Reminder Date"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/editDateTaskDueDate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/editDateTaskReminderDate"
+        android:layout_width="322dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dateTaskReminderDate"
+        android:clickable="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:text="select date"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textSize="20sp"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/txtTaskLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Set Location"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/editDateTaskReminderDate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/editTxtTaskLocation"
+        android:layout_width="322dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtTaskLocation"
+        android:clickable="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textSize="20sp"
+        android:typeface="monospace" />
 
 
 </RelativeLayout>

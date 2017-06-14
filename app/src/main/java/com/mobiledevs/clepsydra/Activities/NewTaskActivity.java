@@ -11,26 +11,31 @@ import android.widget.TextView;
 import com.mobiledevs.clepsydra.POJO.Task;
 import com.mobiledevs.clepsydra.R;
 
-public class NewTaskActivity extends AppCompatActivity {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-    //
+public class NewTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
-        btnCreateListener();
+        getDefaultDueDate();
+        createListeners();
     }
 
-    public void btnCreateListener(){
+    public void createListeners(){
         Button btnCreate = (Button) findViewById(R.id.btnAddNewTask);
         Button btnCancel = (Button) findViewById(R.id.btnCancel);
+        TextView taskDueDate = (TextView) findViewById(R.id.editDateTaskDueDate);
+        TextView taskReminderDate = (TextView) findViewById(R.id.editDateTaskReminderDate);
 
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNewTask();
+                Task task = getNewTask();
 //                saveNewTask(getNewTask());
                 Intent intent = new Intent(NewTaskActivity.this, MainActivity.class);
                 finish();
@@ -46,15 +51,55 @@ public class NewTaskActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        taskDueDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                TextView taskDueDate = (TextView) findViewById(R.id.editDateTaskDueDate);
+                taskDueDate.setText(new Date().toString().toUpperCase());
+            }
+        });
+
+        taskReminderDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                TextView taskReminderDate = (TextView) findViewById(R.id.editDateTaskReminderDate);
+                taskReminderDate.setText(new Date().toString().toUpperCase());
+            }
+        });
+
     }
 
 
-    public Task getNewTask(){
-        TextView taskName = (TextView) findViewById(R.id.editTxtNewTask);
-        Task newTask = new Task(taskName.getText().toString());
 
+    public Task getNewTask(){
+        SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+
+        TextView taskName = (TextView) findViewById(R.id.editTxtNewTask);
+        Spinner taskCategory = (Spinner) findViewById(R.id.editDropTaskCategory);
         Spinner taskPriority = (Spinner) findViewById(R.id.editDropTaskPriority);
+        TextView taskDueDate = (TextView) findViewById(R.id.editDateTaskDueDate);
+        TextView taskReminderDate = (TextView) findViewById(R.id.editDateTaskReminderDate);
+        TextView taskLocation = (TextView) findViewById(R.id.editTxtTaskLocation);
+
+        Task newTask = new Task(taskName.getText().toString());
+        newTask.setTaskCategory(taskCategory.getSelectedItem().toString());
         newTask.setTaskPriority(taskPriority.getSelectedItem().toString());
+        newTask.setTaskLocation(taskLocation.getText().toString());
+
+        try {
+            Date dueDate = format.parse(taskDueDate.getText().toString());
+            newTask.setTaskDueDate(dueDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Date reminderDate = format.parse(taskReminderDate.getText().toString());
+            newTask.setTaskReminderDate(reminderDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return newTask;
     }
@@ -72,4 +117,9 @@ public class NewTaskActivity extends AppCompatActivity {
 //
 //        sqlAdapter.close();
 //    }
+
+    public void getDefaultDueDate(){
+        TextView taskDueDate = (TextView) findViewById(R.id.editDateTaskDueDate);
+        taskDueDate.setText(new Date().toString().toUpperCase());
+    }
 }

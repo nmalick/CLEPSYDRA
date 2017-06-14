@@ -1,6 +1,5 @@
 package com.mobiledevs.clepsydra.POJO;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Date;
 public class Task {
 
     private String taskName;
-    private String taskCreationDate;
+    private Date taskCreationDate;
     private Date taskDueDate;
     private String taskCategory;
     private String taskPriority;
@@ -23,7 +22,7 @@ public class Task {
 
         taskName = newTaskName;
         taskComplete = false;
-        taskCreationDate = DateFormat.getDateTimeInstance().format(new Date());
+        taskCreationDate = new Date();
 
     }
 
@@ -36,11 +35,11 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public String getTaskCreationDate() {
+    public Date getTaskCreationDate() {
         return taskCreationDate;
     }
 
-    public void setTaskCreationDate(String taskCreationDate) {
+    public void setTaskCreationDate(Date taskCreationDate) {
         this.taskCreationDate = taskCreationDate;
     }
 
