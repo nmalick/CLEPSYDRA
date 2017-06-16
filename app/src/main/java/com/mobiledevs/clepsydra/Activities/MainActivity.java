@@ -1,7 +1,10 @@
 package com.mobiledevs.clepsydra.Activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,9 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mobiledevs.clepsydra.R;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,40 +96,67 @@ public class MainActivity extends AppCompatActivity {
     public void displayTasks(){
         Button btnDisplay = (Button) findViewById(R.id.btnDisplay);
         btnDisplay.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-                String data =null;
+//                String data =null;
+
+                LinearLayout layout = (LinearLayout) findViewById(R.id.taskListLayout);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
 
                 String[] tasks = getFilesDir().list();
-                for (String task : tasks){
-                    if(data!= null)
-                        data += task + "\n";
-                    else
-                        data = "";
+                List<TextView> taskList = new ArrayList<TextView>(tasks.length);
+
+                for (final String task : tasks) {
+                    Drawable sdBckgrd = getResources().getDrawable(R.drawable.txtborder_template);
+                    TextView taskTV = (TextView)getLayoutInflater().inflate(R.layout.txtview_task_template,null);
+                    taskTV.setText(task);
+                    taskTV.setBackground(sdBckgrd);
+
+                    taskTV.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View view){
+                            TextView tView = (TextView) findViewById(R.id.txtDisplay);
+                            String data = getTaskData(task);
+                            tView.setText(data);
+                        }
+                    });
+
+                    layout.addView(taskTV);
+                    taskList.add(taskTV);
                 }
-//                FileInputStream iStream;
-//                InputStreamReader iSReader;
-//                try {
-//                    iStream = openFileInput("221.txt");
-//                    iSReader = new InputStreamReader(iStream);
-//                    char[] inputBuffer = new char[iStream.available()];
-//                    iSReader.read(inputBuffer);
-//                    data = new String(inputBuffer);
-//
-//                    iSReader.close();
-//                    iStream.close();
-//
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-
-
-                TextView textView = (TextView) findViewById(R.id.txtDisplay);
-                textView.setText(data);
             }
         });
+    }
+
+    public String getTaskData(String taskName){
+        String taskData =null;
+
+        FileInputStream iStream;
+        InputStreamReader iSReader;
+        try {
+            iStream = openFileInput(taskName);// Do parsing on getFilesDir() result and add +".txt" back
+            iSReader = new InputStreamReader(iStream);
+            char[] inputBuffer = new char[iStream.available()];
+            iSReader.read(inputBuffer);
+            taskData = new String(inputBuffer);
+
+            iSReader.close();
+            iStream.close();
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        File f = new File(getFilesDir()+"/"+taskName);
+//        f.delete();
+
+
+        return taskData;
     }
 
 

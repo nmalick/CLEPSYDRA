@@ -109,7 +109,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
     public void saveNewTask(Task newTask){
         String taskName = newTask.getTaskName();
-        String fileName = taskName + ".txt";
+//        String fileName = taskName + ".txt";
         String newTaskString = newTask.getTaskName() + "|" +
                 newTask.getTaskCategory()+ "|" +newTask.getTaskLocation()+ "|" +
                 newTask.getTaskPriority()+ "|" +newTask.getTaskCreationDate()+ "|" +
@@ -119,7 +119,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
         FileOutputStream oStream;
         try {
-            oStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+            oStream = openFileOutput(taskName, Context.MODE_PRIVATE);
             oStream.write(newTaskString.getBytes());
             oStream.close();
         } catch (Exception e) {

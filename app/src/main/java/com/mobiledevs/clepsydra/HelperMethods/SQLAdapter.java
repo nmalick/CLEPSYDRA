@@ -41,7 +41,7 @@ public class SQLAdapter {
             TASKLIST_REMINDER_DATE + " DATETIME, " +
             TASKLIST_LOCATION + " TEXT, " +
             TASKLIST_IsComplete + " BOOLEAN, " +
-            TASKLIST_OnTime + "BOOLEAN" + " )";
+            TASKLIST_OnTime + " BOOLEAN" + " )";
 
     public SQLAdapter(Context context){
         mContext = context;
