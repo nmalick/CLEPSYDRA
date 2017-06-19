@@ -8,30 +8,27 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.mobiledevs.clepsydra.POJO.Task;
 
-/**
- * Created by milko on 5/30/2017.
- */
 
 public class SQLAdapter {
-    private static final int DATABASE_VERSION = 2;
-    public static final String DATABASE_NAME = "tasklist_database";
-    public static final String TASKLIST_TABLE_NAME = "TaskList_Table";
-    public static final String TASKLIST_TASK_ID = "_ID Number";
-    public static final String TASKLIST_TASK_NAME = "Task Name";
-    public static final String TASKLIST_CREATION_DATE = "Creation Date";
-    public static final String TASKLIST_DUE_DATE = "Due Date";
-    public static final String TASKLIST_CATEGORY = "Category";
-    public static final String TASKLIST_PRIORITY = "Priority";
-    public static final String TASKLIST_REMINDER_DATE = "Reminder Date";
-    public static final String TASKLIST_LOCATION = "Location";
-    public static final String TASKLIST_IsComplete = "Is Complete";
-    public static final String TASKLIST_OnTime = "On Time";
+    private static  int DATABASE_VERSION = 2;
+    public static  String DATABASE_NAME = "tasklist_database";
+    public static  String TASKLIST_TABLE_NAME = "TaskList_Table";
+    public static  String TASKLIST_TASK_ID = "_ID Number";
+    public static  String TASKLIST_TASK_NAME = "Task Name";
+    public static  String TASKLIST_CREATION_DATE = "Creation Date";
+    public static  String TASKLIST_DUE_DATE = "Due Date";
+    public static  String TASKLIST_CATEGORY = "Category";
+    public static  String TASKLIST_PRIORITY = "Priority";
+    public static  String TASKLIST_REMINDER_DATE = "Reminder Date";
+    public static  String TASKLIST_LOCATION = "Location";
+    public static  String TASKLIST_IsComplete = "Is Complete";
+    public static  String TASKLIST_OnTime = "On Time";
 
     private SQLiteDatabase sqLiteDatabase;
     private SQLiteDBHelper sqLiteDBHelper;
     private Context mContext;
 
-    private static final String SCRIPT_CREATE_DATABASE = "CREATE TABLE " + TASKLIST_TABLE_NAME + " ( " +
+    private String SCRIPT_CREATE_DATABASE = "CREATE TABLE " + TASKLIST_TABLE_NAME + " ( " +
             TASKLIST_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             TASKLIST_TASK_NAME + " TEXT NOT NULL, " +
             TASKLIST_CREATION_DATE + " DATETIME, " +

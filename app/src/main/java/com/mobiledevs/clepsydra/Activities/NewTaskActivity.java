@@ -131,12 +131,12 @@ public class NewTaskActivity extends AppCompatActivity {
 //        sqlAdapter.openToWrite();
 //        sqlAdapter.insert(newTask);
 //        sqlAdapter.close();
-//
+
 //        sqlAdapter.openToRead();
 //
 //        TextView textView = (TextView) findViewById(R.id.txtNewTask);
 //        textView.setText(sqlAdapter.getName());
-//
+
 //        sqlAdapter.close();
 
 //        ...........................................................................................................

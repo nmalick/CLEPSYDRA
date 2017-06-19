@@ -14,11 +14,6 @@ import android.widget.Button;
 
 import com.mobiledevs.clepsydra.R;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -126,35 +121,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public String getTaskData(String taskName){
-        String taskData =null;
-
-        FileInputStream iStream;
-        InputStreamReader iSReader;
-        try {
-            iStream = openFileInput(taskName);// Do parsing on getFilesDir() result and add +".txt" back
-            iSReader = new InputStreamReader(iStream);
-            char[] inputBuffer = new char[iStream.available()];
-            iSReader.read(inputBuffer);
-            taskData = new String(inputBuffer);
-
-            iSReader.close();
-            iStream.close();
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        File f = new File(getFilesDir()+"/"+taskName);
-//        f.delete();
-
-
-        return taskData;
-    }
+//
+//    public String getTaskData(String taskName){
+//        String taskData =null;
+//
+//        FileInputStream iStream;
+//        InputStreamReader iSReader;
+//        try {
+//            iStream = openFileInput(taskName);// Do parsing on getFilesDir() result and add +".txt" back
+//            iSReader = new InputStreamReader(iStream);
+//            char[] inputBuffer = new char[iStream.available()];
+//            iSReader.read(inputBuffer);
+//            taskData = new String(inputBuffer);
+//
+//            iSReader.close();
+//            iStream.close();
+//
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+////        File f = new File(getFilesDir()+"/"+taskName);
+////        f.delete();
+//
+//
+//        return taskData;
+//    }
 
 
 
