@@ -35,6 +35,19 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:label="Login!" />
+        <activity
+            android:name=".Activities.TaskListActivity"
+            android:label="@string/title_task_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activities.TaskDetailActivity"
+            android:label="@string/title_task_detail"
+            android:parentActivityName=".Activities.TaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mobiledevs.clepsydra.Activities.TaskListActivity" />
+        </activity>
     </application>
 
 </manifest>

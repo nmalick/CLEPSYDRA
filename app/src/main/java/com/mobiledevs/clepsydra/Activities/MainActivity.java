@@ -1,7 +1,6 @@
 package com.mobiledevs.clepsydra.Activities;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -12,8 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.mobiledevs.clepsydra.R;
 
@@ -21,8 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,33 +94,35 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-//                String data =null;
 
-                LinearLayout layout = (LinearLayout) findViewById(R.id.taskListLayout);
-                layout.setOrientation(LinearLayout.VERTICAL);
+                Intent intent = new Intent(MainActivity.this,TaskListActivity.class);
+                startActivity(intent);
 
-
-                String[] tasks = getFilesDir().list();
-                List<TextView> taskList = new ArrayList<TextView>(tasks.length);
-
-                for (final String task : tasks) {
-                    Drawable sdBckgrd = getResources().getDrawable(R.drawable.txtborder_template);
-                    TextView taskTV = (TextView)getLayoutInflater().inflate(R.layout.txtview_task_template,null);
-                    taskTV.setText(task);
-                    taskTV.setBackground(sdBckgrd);
-
-                    taskTV.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View view){
-                            TextView tView = (TextView) findViewById(R.id.txtDisplay);
-                            String data = getTaskData(task);
-                            tView.setText(data);
-                        }
-                    });
-
-                    layout.addView(taskTV);
-                    taskList.add(taskTV);
-                }
+//                LinearLayout layout = (LinearLayout) findViewById(R.id.taskListLayout);
+//                layout.setOrientation(LinearLayout.VERTICAL);
+//
+//
+//                String[] tasks = getFilesDir().list();
+//                List<TextView> taskList = new ArrayList<TextView>(tasks.length);
+//
+//                for (final String task : tasks) {
+//                    Drawable sdBckgrd = getResources().getDrawable(R.drawable.txtborder_template);
+//                    TextView taskTV = (TextView)getLayoutInflater().inflate(R.layout.txtview_task_template,null);
+//                    taskTV.setText(task);
+//                    taskTV.setBackground(sdBckgrd);
+//
+//                    taskTV.setOnClickListener(new View.OnClickListener(){
+//                        @Override
+//                        public void onClick(View view){
+//                            TextView tView = (TextView) findViewById(R.id.txtDisplay);
+//                            String data = getTaskData(task);
+//                            tView.setText(data);
+//                        }
+//                    });
+//
+//                    layout.addView(taskTV);
+//                    taskList.add(taskTV);
+//                }
             }
         });
     }

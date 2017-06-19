@@ -85,7 +85,7 @@ public class NewTaskActivity extends AppCompatActivity {
         TextView taskReminderDate = (TextView) findViewById(R.id.editDateTaskReminderDate);
         TextView taskLocation = (TextView) findViewById(R.id.editTxtTaskLocation);
 
-        Task newTask = new Task(taskName.getText().toString(),this);
+        Task newTask = new Task(taskName.getText().toString());
         newTask.setTaskCategory(taskCategory.getSelectedItem().toString());
         newTask.setTaskPriority(taskPriority.getSelectedItem().toString());
         newTask.setTaskLocation(taskLocation.getText().toString());
@@ -110,12 +110,12 @@ public class NewTaskActivity extends AppCompatActivity {
     public void saveNewTask(Task newTask){
         String taskName = newTask.getTaskName();
 //        String fileName = taskName + ".txt";
-        String newTaskString = newTask.getTaskName() + "|" +
-                newTask.getTaskCategory()+ "|" +newTask.getTaskLocation()+ "|" +
-                newTask.getTaskPriority()+ "|" +newTask.getTaskCreationDate()+ "|" +
-                newTask.getTaskDueDate()+ "|" +newTask.getTaskReminderDate()+ ";" ;
+        String newTaskString = newTask.getTaskName() + " : " +
+                newTask.getTaskCategory()+ " : " +newTask.getTaskLocation()+ " : " +
+                newTask.getTaskPriority()+ " : " +newTask.getTaskCreationDate()+ " : " +
+                newTask.getTaskDueDate()+ " : " +newTask.getTaskReminderDate()+ ";" ;
 
-                File newTaskFile = new File(newTask.getContext().getFilesDir(),taskName);
+                File newTaskFile = new File(getFilesDir(),taskName);
 
         FileOutputStream oStream;
         try {
